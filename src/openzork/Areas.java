@@ -29,6 +29,7 @@ public class Areas {
 			Description = "";
 			south = OneArea;
 			north = null;
+			items[1] = new Item("Leaves", 1);
 		}
 	}
 

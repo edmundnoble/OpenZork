@@ -4,34 +4,38 @@ import java.util.Random;
 
 class Parser {
 
-	public Parser(Location loc, Player player) {
-		output = null;
-
-		this.loc = loc;
+	public Parser(Player player) {
+		output = "/n";
 		this.player = player;
 	}
 
-	public String parse(String Input) {
+	public void parse(String Input) {
 		String input[] = Input.split(" ");
-		if (input[0] == "look") {
-			output = loc.getNameAndDesc();
-		} else if (input[0] == "get") {
 
-		} else if (input[0] == "") {
-		} else
+		if (input[0].equals("look")) {
+			output = player.currentLoc.getNameAndDesc();
+
+		} else if (input[0].equals("get") || input[0].equals("take")) {
+
+		} else if (input[0].equals("")) {
+
+		} else if (input[0].equals("go") || input[0].equals("move")) {
+			player.switchLoc(player.currentLoc.north);
+		} else {
+			System.out.println(input[0]);
 			output = notfoundoutputs();
-		return output;
+		}
+		System.out.println(output);
 	}
 
 	private String notfoundoutputs() {
 		String[] randomoutputs = { "What?", "What did you say?",
 				"I don't know that command.",
 				"ENGLISH, MOTHERFUCKER, DO YOU SPEAK IT?" };
-		return randomoutputs[rand.nextInt(3)];
+		return randomoutputs[rand.nextInt(4) - 1];
 	}
 
 	private Random rand = new Random();
-	private Location loc;
 	private Player player;
 	private String output;
 }

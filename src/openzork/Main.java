@@ -1,5 +1,7 @@
 package openzork;
 
+import java.util.Scanner;
+
 final class Main {
 
 	/**
@@ -16,7 +18,11 @@ final class Main {
 			Location startingarea = areas.new OneArea();
 			player.switchLoc(startingarea);
 			while (true) {
-				Parser parser = new Parser(player.currentLoc, player);
+				Parser parser = new Parser(player);
+				try {
+					parser.parse(scanner.nextLine());
+				} catch (Exception e) {
+				}
 			}
 
 		} catch (Exception e) {
@@ -25,5 +31,6 @@ final class Main {
 
 	}
 
+	static Scanner scanner = new Scanner(System.in);
 	// Location startingarea = new areas.StartingArea();
 }
