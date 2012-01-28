@@ -29,7 +29,6 @@ public class Areas {
 			Name = "Forest";
 			Description = "";
 			south = OneArea;
-			items[1] = new Item("Leaves", 1, OneAreaN);
 		}
 
 	}

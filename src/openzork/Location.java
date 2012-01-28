@@ -12,6 +12,10 @@ abstract class Location {
 
 	public String getNameAndDesc() {
 		return (Name + "\n\n" + Description + "\n");
+	}
+
+	public String getItems() {
+		return ItemsInArea;
 	}/*
 	 * public Location(String name, String description, boolean north, boolean
 	 * south, boolean east, boolean west) { this.north = north; this.south =
@@ -25,5 +29,6 @@ abstract class Location {
 	protected Item items[] = new Item[5];
 	protected String Description;
 	protected String Name;
+	protected String ItemsInArea;
 	Location north, south, east, west = null;
 }
