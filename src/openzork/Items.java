@@ -3,16 +3,13 @@ package openzork;
 public class Items {
 
 	public Items() {
-		Item leaves = new Item("leaves", 1, areas.new OneArea());
-		Item pen = new Item("pen", 2, areas.new OneArea());
-		Item sword = new Item("sword", 3, areas.new OneAreaShop(), 50);
-		items[1] = leaves;
-		items[2] = pen;
-		items[3] = sword;
-		System.out.println(items.length);
+
+		items[1] = new Item("leaves", 1, Areas.OneAreaN);
+		items[2] = new Item("pen", 2, Areas.OneArea);
+		items[3] = new Item("sword", 3, Areas.OneAreaShop, 50);
+
 	}
 
-	public Areas areas = new Areas();
 	public Item[] items;
 
 }

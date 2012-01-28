@@ -1,6 +1,6 @@
 package openzork;
 
-abstract class Location {
+class Location {
 
 	public String getName() {
 		return Name;
@@ -11,10 +11,10 @@ abstract class Location {
 	}
 
 	public String getNameAndDesc() {
-		return (Name + "\n\n" + Description + "\n");
+		return (Name + "\n" + Description);
 	}
 
-	public String getItems() {
+	public Item[] getItems() {
 		return ItemsInArea;
 	}/*
 	 * public Location(String name, String description, boolean north, boolean
@@ -24,10 +24,13 @@ abstract class Location {
 	 */
 
 	public Location() {
+		Name = "";
+		Description = "";
+		ItemsInArea = null;
 	}
 
 	protected String Description;
 	protected String Name;
-	protected String ItemsInArea;
-	Location north, south, east, west = (Location) null;
+	protected Item[] ItemsInArea;
+	Location north, south, east, west;
 }

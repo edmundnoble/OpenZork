@@ -2,6 +2,15 @@ package openzork;
 
 public class Item {
 
+	/*
+	 * Creates a new <i>Item</i>.
+	 * 
+	 * @param name The name of the item.
+	 * 
+	 * @param id The item ID.
+	 * 
+	 * @param loc The location of the item.
+	 */
 	public Item(String name, int id, Location loc) {
 		this.name = name;
 		this.id = id;

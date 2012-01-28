@@ -8,6 +8,7 @@ public class Areas {
 		OneAreaS = new OneAreaS();
 		OneAreaBar = new OneAreaBar();
 		OneAreaShop = new OneAreaShop();
+		DefLoc = new Location();
 	}
 
 	public final class OneArea extends Location {
@@ -18,6 +19,8 @@ public class Areas {
 			Description = "You are in a field. Exits are: North and south.";
 			north = OneAreaN;
 			south = OneAreaS;
+			east = DefLoc;
+			west = DefLoc;
 		}
 
 	}
@@ -27,8 +30,11 @@ public class Areas {
 		public OneAreaN() {
 			super();
 			Name = "Forest";
-			Description = "";
+			Description = "You are in a forest. You see a pile of leaves.";
 			south = OneArea;
+			north = DefLoc;
+			east = DefLoc;
+			west = DefLoc;
 		}
 
 	}
@@ -42,6 +48,7 @@ public class Areas {
 			north = OneArea;
 			east = OneAreaBar;
 			west = OneAreaShop;
+			south = DefLoc;
 		}
 
 	}
@@ -52,10 +59,10 @@ public class Areas {
 			super();
 			Name = "Bar";
 			Description = "";
-			north = null;
-			south = null;
-			west = null;
-			east = null;
+			north = DefLoc;
+			east = DefLoc;
+			west = DefLoc;
+			south = DefLoc;
 		}
 
 	}
@@ -66,17 +73,18 @@ public class Areas {
 			super();
 			Name = "Shop";
 			Description = "";
-			north = null;
-			south = null;
-			west = null;
-			east = null;
+			north = DefLoc;
+			east = DefLoc;
+			west = DefLoc;
+			south = DefLoc;
 		}
-
 	}
 
-	public Location OneArea;
-	public Location OneAreaN;
-	public Location OneAreaS;
-	public Location OneAreaBar;
-	public Location OneAreaShop;
+	public static Location DefLoc;
+	public static Location OneArea;
+	public static Location OneAreaN;
+	public static Location OneAreaS;
+	public static Location OneAreaBar;
+	public static Location OneAreaShop;
+
 }
