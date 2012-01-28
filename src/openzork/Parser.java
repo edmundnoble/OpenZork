@@ -21,11 +21,14 @@ class Parser {
 
 		} else if (input[0].equals("go") || input[0].equals("move")) {
 
-			if (input[1].equals("north"))
+			if (input[1].equals("north") && player.currentLoc.north != null)
 				player.switchLoc(player.currentLoc.north);
 
-			else if (input[1].equals("south")) player
-					.switchLoc(player.currentLoc.south);
+			else if (input[1].equals("south") && player.currentLoc.south != null)
+				player.switchLoc(player.currentLoc.south);
+
+			else if (input[1].equals("west") && player.currentLoc.west != null) player
+					.switchLoc(player.currentLoc.west);
 
 		} else {
 			System.out.println(input[0]);
@@ -36,8 +39,7 @@ class Parser {
 
 	private String notfoundoutputs() {
 		String[] randomoutputs = { "What?", "What did you say?",
-				"I don't know that command.",
-				"ENGLISH, MOTHERFUCKER, DO YOU SPEAK IT?" };
+				"I don't know that command.", "ENGLISH, MOTHERFUCKER, DO YOU SPEAK IT?" };
 		return randomoutputs[rand.nextInt(4) - 1];
 	}
 
