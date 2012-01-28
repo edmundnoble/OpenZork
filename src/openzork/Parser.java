@@ -20,7 +20,13 @@ class Parser {
 		} else if (input[0].equals("")) {
 
 		} else if (input[0].equals("go") || input[0].equals("move")) {
-			player.switchLoc(player.currentLoc.north);
+
+			if (input[1].equals("north"))
+				player.switchLoc(player.currentLoc.north);
+
+			else if (input[1].equals("south")) player
+					.switchLoc(player.currentLoc.south);
+
 		} else {
 			System.out.println(input[0]);
 			output = notfoundoutputs();
