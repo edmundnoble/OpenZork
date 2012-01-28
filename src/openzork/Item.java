@@ -38,6 +38,17 @@ public class Item {
 		return loc;
 	}
 
+	public String buy(Player player) {
+		String retval = "";
+		if (player.getGold() > cost) {
+			player.addGold(-cost);
+			pickUp();
+		} else {
+			retval = "You don't have enough gold!";
+		}
+		return retval;
+	}
+
 	private int cost = 0;
 	private int id;
 	private String name;

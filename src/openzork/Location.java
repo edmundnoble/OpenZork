@@ -26,9 +26,8 @@ abstract class Location {
 	public Location() {
 	}
 
-	protected Item items[] = new Item[5];
 	protected String Description;
 	protected String Name;
 	protected String ItemsInArea;
-	Location north, south, east, west = null;
+	Location north, south, east, west = (Location) null;
 }
