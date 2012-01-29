@@ -5,11 +5,13 @@ import java.util.Random;
 class Parser {
 
 	public Parser(Player player) {
-		output = "/n";
+		output = "";
 		this.player = player;
 	}
 
 	public void parse(String Input) {
+		Input = Input.replace("\n", "");
+		Input = Input.trim();
 		String input[] = Input.split(" ");
 
 		if (input[0].equals("look")) {
@@ -48,6 +50,8 @@ class Parser {
 			output = "";
 		} else if (input[0].equals("go") || input[0].equals("move")) {
 
+			if (input[1].equals("")) output = "Where?";
+
 			if (input[1].equals("north"))
 				if (!player.currentLoc.north.getName().equals("")) {
 					player.switchLoc(player.currentLoc.north);
@@ -82,6 +86,7 @@ class Parser {
 		} else {
 			output = notfoundoutputs();
 		}
+		output = output.replace("\n", "");
 		System.out.println("\n" + output + "\n ");
 	}
 
@@ -94,6 +99,6 @@ class Parser {
 	private int temp = 0;
 	private Random rand = new Random();
 	private Player player;
-	private String output;
+	private String output = "lolnowork";
 	private Items Items = new Items();
 }

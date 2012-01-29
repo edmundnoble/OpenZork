@@ -11,7 +11,7 @@ class Location {
 	}
 
 	public String getNameAndDesc() {
-		return (Name + "\n" + Description + " ");
+		return (Name + "\n\n" + Description + "\n");
 	}
 
 	public Item[] getItems() {

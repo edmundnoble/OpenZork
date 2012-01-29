@@ -20,7 +20,7 @@ class Player {
 
 	public void switchLoc(Location newLoc) {
 		currentLoc = newLoc;
-		System.out.print(newLoc.getNameAndDesc());
+		System.out.println(newLoc.getNameAndDesc());
 	}
 
 	private int gold = 0;
