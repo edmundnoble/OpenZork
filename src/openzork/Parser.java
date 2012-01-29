@@ -48,27 +48,41 @@ class Parser {
 			output = "";
 		} else if (input[0].equals("go") || input[0].equals("move")) {
 
-			if (input[1].equals("north") && !player.currentLoc.north.getName().equals(""))
-				player.switchLoc(player.currentLoc.north);
+			if (input[1].equals("north"))
+				if (!player.currentLoc.north.getName().equals("")) {
+					player.switchLoc(player.currentLoc.north);
+				} else {
+					output = "You can't go that way.";
+				}
 
-			else if (input[1].equals("south")
-					&& !player.currentLoc.south.getName().equals(""))
-				player.switchLoc(player.currentLoc.south);
+			else if (input[1].equals("south"))
+				if (!player.currentLoc.south.getName().equals(""))
+					player.switchLoc(player.currentLoc.south);
+				else {
+					output = "You can't go that way.";
+				}
+			else if (input[1].equals("west"))
+				if (!player.currentLoc.west.getName().equals(""))
+					player.switchLoc(player.currentLoc.west);
+				else {
+					output = "You can't go that way.";
+				}
 
-			else if (input[1].equals("west")
-					&& !player.currentLoc.west.getName().equals(""))
-				player.switchLoc(player.currentLoc.west);
-
-			else if (input[1].equals("east")
-					&& !player.currentLoc.east.getName().equals(""))
-				player.switchLoc(player.currentLoc.east);
+			else if (input[1].equals("east"))
+				if (!player.currentLoc.east.getName().equals(""))
+					player.switchLoc(player.currentLoc.east);
+				else {
+					output = "You can't go that way.";
+				}
 			else {
 				output = "You can't go that way.";
 			}
+		} else if (input[0].equals("exit")) {
+			System.exit(0);
 		} else {
 			output = notfoundoutputs();
 		}
-		System.out.println("\n" + output + "\n");
+		System.out.println("\n" + output + "\n ");
 	}
 
 	private String notfoundoutputs() {
