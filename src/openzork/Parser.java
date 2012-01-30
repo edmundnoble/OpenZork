@@ -14,52 +14,96 @@ class Parser {
 		Input = Input.trim();
 		String input[] = Input.split(" ");
 
-		if (input[0].equals("look")) {
+		if (input[0].equalsIgnoreCase("look")) {
 			output = player.currentLoc.getDescription() + "\n";
 
 			for (int i = 0; i < Items.items.length; i++) {
 
-				if (Items.items[i].getLoc().equals(player.getCurrent())) output += " \nThere is a "
+				if (Items.items[i].getLoc() == player.getCurrent()
+						&& !Items.items[i].isPickedUp()) output += " \nThere is a "
 						+ Items.items[i].getName() + " on the ground.";
 			}
 
-		} else if (input[0].equals("get") || input[0].equals("take")) {
-			System.out.println(Items.items.length);
+		} else if (input[0].equalsIgnoreCase("inv")
+				|| input[0].equalsIgnoreCase("inventory")) {
+			output = "Inventory:";
+
 			for (int i = 0; i < Items.items.length; i++) {
 
-				if (Items.items[i].getName() == input[1]) {
+				if (Items.items[i].isPickedUp()) {
+					output += "\n" + Items.items[i].getName();
+				}
+			}
 
-					if (Items.items[1].getCost() > 0) {
+		} else if (input[0].equalsIgnoreCase("drop")) {
+			temp = 0;
+
+			for (int i = 0; i < Items.items.length; i++) {
+
+				if (input[1].equalsIgnoreCase(Items.items[i].getName())) {
+					Items.items[i].setIsPickedUp(false);
+					Items.items[i].setLoc(player.currentLoc);
+					output = "You drop the " + Items.items[i].getName() + ".";
+
+				} else
+					temp++;
+			}
+
+			if (temp == Items.items.length) {
+				output = "You don't have a " + input[1] + ".";
+			}
+
+		} else if (input[0].equalsIgnoreCase("get") || input[0].equalsIgnoreCase("take")) {
+			System.out.println(Items.items.length);
+			temp = 0;
+
+			for (int i = 0; i < Items.items.length; i++) {
+
+				if (Items.items[i].getName().equalsIgnoreCase(input[1])
+						&& Items.items[i].getLoc().equals(player.currentLoc)) {
+
+					if (Items.items[i].isPickedUp())
+
+						output = "You already have a " + Items.items[i].getName() + "!";
+
+					else if (Items.items[i].getCost() > 0 && !Items.items[i].isOwned())
 
 						output = "You don't own that!";
-					} else {
 
-						output = Items.items[i].pickUp();
+					else {
+						Items.items[i].setIsPickedUp(true);
+						output = "You take the " + Items.items[i].getName();
 					}
 
 				} else {
-
 					temp++;
 				}
 			}
+
 			if (temp == Items.items.length) {
 				output = "There is no " + input[1] + " here.";
 			}
-		} else if (input[0].equals("purchase") || input[0].equals("buy")) {
-			for (int i = 0; i > Items.items.length; i++) {
-				if (Items.items[i].getName() == input[1]) {
+
+		} else if (input[0].equalsIgnoreCase("purchase")
+				|| input[0].equalsIgnoreCase("buy")) {
+
+			for (int i = 0; i < Items.items.length; i++) {
+
+				if (Items.items[i].getName().equalsIgnoreCase(input[1])) {
 					Items.items[i].buy(player);
 				}
 			}
 
-		} else if (input[0].equals("")) {
+		} else if (input[0].equalsIgnoreCase("")) {
 			output = "";
-		} else if (input[0].equals("go") || input[0].equals("move")) {
 
-			if (input[1].equals("")) output = "Where?";
+		} else if (input[0].equalsIgnoreCase("go") || input[0].equalsIgnoreCase("move")) {
 
-			if (input[1].equals("north"))
-				if (!player.currentLoc.north.getName().equals("")) {
+			if (input[1].equalsIgnoreCase("")) output = "Where?";
+
+			if (input[1].equalsIgnoreCase("north"))
+
+				if (!player.currentLoc.north.getName().equalsIgnoreCase("")) {
 					player.switchLoc(player.currentLoc.north);
 					System.out.println(player.currentLoc.getName() + "l");
 
@@ -67,17 +111,18 @@ class Parser {
 					output = "You can't go that way.";
 				}
 
-			else if (input[1].equals("south"))
+			else if (input[1].equalsIgnoreCase("south"))
 
-				if (!player.currentLoc.south.getName().equals("")) {
+				if (!player.currentLoc.south.getName().equalsIgnoreCase("")) {
 					player.switchLoc(player.currentLoc.south);
 					System.out.println(player.currentLoc.getName() + "l");
 				} else {
 					output = "You can't go that way.";
-				}
-			else if (input[1].equals("west"))
 
-				if (!player.currentLoc.west.getName().equals("")) {
+				}
+			else if (input[1].equalsIgnoreCase("west"))
+
+				if (!player.currentLoc.west.getName().equalsIgnoreCase("")) {
 					player.switchLoc(player.currentLoc.west);
 					System.out.println(player.currentLoc.getName() + "l");
 				}
@@ -86,11 +131,12 @@ class Parser {
 					output = "You can't go that way.";
 				}
 
-			else if (input[1].equals("east"))
+			else if (input[1].equalsIgnoreCase("east"))
 
-				if (!player.currentLoc.east.getName().equals("")) {
+				if (!player.currentLoc.east.getName().equalsIgnoreCase("")) {
 					player.switchLoc(player.currentLoc.east);
 					System.out.println(player.currentLoc.getName() + "l");
+
 				} else {
 					output = "You can't go that way.";
 
@@ -99,7 +145,7 @@ class Parser {
 				output = "You can't go that way.";
 			}
 
-		} else if (input[0].equals("exit")) {
+		} else if (input[0].equalsIgnoreCase("exit")) {
 			System.exit(0);
 
 		} else {

@@ -30,9 +30,8 @@ public class Item {
 		return pickedUp;
 	}
 
-	public String pickUp() {
-		pickedUp = true;
-		return "You pick up the " + name;
+	public void setIsPickedUp(boolean pickedUp) {
+		this.pickedUp = pickedUp;
 	}
 
 	public int getID() {
@@ -47,20 +46,33 @@ public class Item {
 		return loc;
 	}
 
+	public void setLoc(Location loc) {
+		this.loc = loc;
+	}
+
 	public String buy(Player player) {
 		String retval = "";
 		if (player.getGold() > cost) {
 			player.addGold(-cost);
-			pickUp();
+			setIsPickedUp(true);
 		} else {
 			retval = "You don't have enough gold!";
 		}
 		return retval;
 	}
 
+	public boolean isOwned() {
+		return owned;
+	}
+
+	public void setOwned(boolean owned) {
+		this.owned = owned;
+	}
+
 	private int cost = 0;
 	private int id;
 	private String name;
+	private boolean owned = true;
 	private boolean pickedUp = false;
 	private Location loc;
 
