@@ -18,6 +18,10 @@ class Player {
 		return currentLoc;
 	}
 
+	public void setCurrent(Location loc) {
+		currentLoc = loc;
+	}
+
 	public void switchLoc(Location newLoc) {
 		currentLoc = newLoc;
 		System.out.println(newLoc.getNameAndDesc());

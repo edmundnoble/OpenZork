@@ -30,7 +30,7 @@ public class Areas {
 		public OneAreaN() {
 			super();
 			Name = "Forest";
-			Description = "You are in a forest. You see a pile of leaves.";
+			Description = "You are in a forest. Exits are: south.";
 			south = OneArea;
 			north = DefLoc;
 			east = DefLoc;

@@ -15,11 +15,17 @@ class Parser {
 		String input[] = Input.split(" ");
 
 		if (input[0].equals("look")) {
-			output = player.currentLoc.getNameAndDesc();
+			output = player.currentLoc.getDescription() + "\n";
+
+			for (int i = 0; i < Items.items.length; i++) {
+
+				if (Items.items[i].getLoc().equals(player.getCurrent())) output += " \nThere is a "
+						+ Items.items[i].getName() + " on the ground.";
+			}
 
 		} else if (input[0].equals("get") || input[0].equals("take")) {
 			System.out.println(Items.items.length);
-			for (int i = 0; i > Items.items.length; i++) {
+			for (int i = 0; i < Items.items.length; i++) {
 
 				if (Items.items[i].getName() == input[1]) {
 
@@ -55,34 +61,47 @@ class Parser {
 			if (input[1].equals("north"))
 				if (!player.currentLoc.north.getName().equals("")) {
 					player.switchLoc(player.currentLoc.north);
+					System.out.println(player.currentLoc.getName() + "l");
+
 				} else {
 					output = "You can't go that way.";
 				}
 
 			else if (input[1].equals("south"))
-				if (!player.currentLoc.south.getName().equals(""))
+
+				if (!player.currentLoc.south.getName().equals("")) {
 					player.switchLoc(player.currentLoc.south);
-				else {
+					System.out.println(player.currentLoc.getName() + "l");
+				} else {
 					output = "You can't go that way.";
 				}
 			else if (input[1].equals("west"))
-				if (!player.currentLoc.west.getName().equals(""))
+
+				if (!player.currentLoc.west.getName().equals("")) {
 					player.switchLoc(player.currentLoc.west);
+					System.out.println(player.currentLoc.getName() + "l");
+				}
+
 				else {
 					output = "You can't go that way.";
 				}
 
 			else if (input[1].equals("east"))
-				if (!player.currentLoc.east.getName().equals(""))
+
+				if (!player.currentLoc.east.getName().equals("")) {
 					player.switchLoc(player.currentLoc.east);
-				else {
+					System.out.println(player.currentLoc.getName() + "l");
+				} else {
 					output = "You can't go that way.";
+
 				}
 			else {
 				output = "You can't go that way.";
 			}
+
 		} else if (input[0].equals("exit")) {
 			System.exit(0);
+
 		} else {
 			output = notfoundoutputs();
 		}
@@ -93,7 +112,7 @@ class Parser {
 	private String notfoundoutputs() {
 		String[] randomoutputs = { "What?", "What did you say?",
 				"I don't know that command.", "ENGLISH, MOTHERFUCKER, DO YOU SPEAK IT?" };
-		return randomoutputs[rand.nextInt(4) - 1];
+		return randomoutputs[rand.nextInt(4)];
 	}
 
 	private int temp = 0;
