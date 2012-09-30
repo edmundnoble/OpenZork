@@ -1,21 +1,27 @@
 package openzork;
 
-class Location {
+import java.util.ArrayList;
+import java.util.HashMap;
 
+public class Location {
+
+	class CommandHandler {
+		public void run(Player p, String args) {}
+	}
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public String getNameAndDesc() {
-		return (Name + " \n" + Description + "\n");
+		return (name + " \n" + description + "\n");
 	}
 
-	public Item[] getItems() {
-		return ItemsInArea;
+	public ArrayList<Item> getItems() {
+		return itemsInArea;
 	}/*
 	 * public Location(String name, String description, boolean north, boolean
 	 * south, boolean east, boolean west) { this.north = north; this.south =
@@ -24,13 +30,35 @@ class Location {
 	 */
 
 	public Location() {
-		Name = "";
-		Description = "";
-		ItemsInArea = null;
+		name = "";
+		description = "";
+		itemsInArea = null;
+		commandMap.put("look", new CommandHandler() {
+			public void run(Player p, String args) {
+				System.out.println(p.currentLoc.description);
+			}
+		});
+		CommandHandler takeHandler = new CommandHandler() {
+			public void run(Player p, String args) {
+				
+			}
+		};
+		commandMap.put("take", takeHandler);
+		commandMap.put("grab", takeHandler);
 	}
-
-	protected String Description;
-	protected String Name;
-	protected Item[] ItemsInArea;
+	
+	public void addCommand(String command, CommandHandler handler) {
+		commandMap.put(command, handler);
+	}
+	
+	public boolean parse(String command, Player p) {
+		if (command.isEmpty() || commandMap.get(command.split(" ")[0]) == null) return false;
+		commandMap.get(command.split(" ")[0]).run(p, command); return true;
+	}
+	
+	protected HashMap<String, CommandHandler> commandMap = new HashMap<String, CommandHandler>();
+	protected String description;
+	protected String name;
+	protected ArrayList<Item> itemsInArea;
 	Location north, south, east, west;
 }

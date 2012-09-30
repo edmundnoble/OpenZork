@@ -15,8 +15,8 @@ public class Areas {
 
 		public OneArea() {
 			super();
-			Name = "Field";
-			Description = "You are in a field. Exits are: North and south.";
+			name = "Field";
+			description = "You are in a field. Exits are: North and south.";
 			north = OneAreaN;
 			south = OneAreaS;
 			east = DefLoc;
@@ -29,8 +29,8 @@ public class Areas {
 
 		public OneAreaN() {
 			super();
-			Name = "Forest";
-			Description = "You are in a forest. Exits are: south.";
+			name = "Forest";
+			description = "You are in a forest. Exits are: south.";
 			south = OneArea;
 			north = DefLoc;
 			east = DefLoc;
@@ -43,8 +43,8 @@ public class Areas {
 
 		public OneAreaS() {
 			super();
-			Name = "Village";
-			Description = "You find yourself in a village. Exits are: North, East (bar), and West (shop).";
+			name = "Village";
+			description = "You find yourself in a village. Exits are: North, East (bar), and West (shop).";
 			north = OneArea;
 			east = OneAreaBar;
 			west = OneAreaShop;
@@ -57,8 +57,8 @@ public class Areas {
 
 		public OneAreaBar() {
 			super();
-			Name = "Bar";
-			Description = "";
+			name = "Bar";
+			description = "";
 			north = DefLoc;
 			east = DefLoc;
 			west = DefLoc;
@@ -71,8 +71,8 @@ public class Areas {
 
 		public OneAreaShop() {
 			super();
-			Name = "Shop";
-			Description = "";
+			name = "Shop";
+			description = "";
 			north = DefLoc;
 			east = DefLoc;
 			west = DefLoc;
