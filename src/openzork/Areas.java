@@ -86,5 +86,8 @@ public class Areas {
 	public static Location OneAreaS;
 	public static Location OneAreaBar;
 	public static Location OneAreaShop;
+	public static void initLocations() {
+		
+	}
 
 }
